@@ -1,1 +1,6 @@
-console.log('hello');
+const faker = require('faker');
+
+console.log({
+    id: faker.random.uuid(),
+    name: faker.name.firstName()
+});
