@@ -1,6 +1,6 @@
 const Base = require('./base/base');
 
-class Costumer extends Base{
+class Customer extends Base{
 
     constructor({ id, name, age }) {
         super({ id, name });
@@ -10,4 +10,4 @@ class Costumer extends Base{
     }
 }
 
-module.exports = Costumer;
+module.exports = Customer;
