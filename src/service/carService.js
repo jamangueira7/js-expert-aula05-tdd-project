@@ -1,8 +1,15 @@
 const BaseRepository = require('./../repository/base/baseRepository');
+const Tax = require('./../entities/tax');
+const Transaction = require('./../entities/transaction');
 
 class CarService {
     constructor({ cars }) {
         this.carRepository = new BaseRepository({ file: cars });
+        this.taxesBaseOnAge = Tax.taxesBaseOnAge;
+        this.currencyFormat = new Intl.NumberFormat('pt-br', {
+            style: 'currency',
+            currency: 'BRL'
+        });
     }
 
     async getAvailableCar(carCategory) {
@@ -27,6 +34,36 @@ class CarService {
           Math.random() * (listLength)
         );
 
+    }
+
+    calculateFinalPrice(customer, carCategory, numberOfDay) {
+        const { age } = customer;
+        const price = carCategory.price;
+        const { then: tax } = this.taxesBaseOnAge.find((tax) => age >= tax.from && age <= tax.to);
+
+        const finalPrice = ((tax * price) * (numberOfDay));
+        const formattedPrice = this.currencyFormat.format(finalPrice);
+
+        return formattedPrice;
+    }
+
+    async rent( customer, carCategory, numberOfDay) {
+        const car = await this.getAvailableCar(carCategory);
+        const finalPrice = await this.calculateFinalPrice(customer, carCategory, numberOfDay);
+
+        const today = new Date();
+        today.setDate(today.getDate() + numberOfDay);
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        const dueDate = today.toLocaleDateString('pt-br', options);
+
+        const transaction = new Transaction({
+            customer,
+            car,
+            amount: finalPrice,
+            dueDate
+        });
+
+        return transaction;
     }
 }
 

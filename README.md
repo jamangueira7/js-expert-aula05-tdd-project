@@ -20,8 +20,15 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Esse projeto é para treinar testes TDD.
 
+Testes: 
 <p align="center">
   <img alt="game" src=".github/test.PNG" width="100%">
+</p>
+
+
+Coverage:
+<p align="center">
+  <img alt="game" src=".github/cov.PNG" width="100%">
 </p>
 
 ## 🚀 Como Rodar
