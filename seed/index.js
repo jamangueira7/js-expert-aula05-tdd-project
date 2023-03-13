@@ -42,6 +42,7 @@ for (let index=0; index <= ITEMS_AMOUNT; index++) {
 }
 
 const write = (filename, data) => writeFile(join(seederBaseFoder, filename), JSON.stringify(data));
+
 ;(async () => {
     await write('cars.json', cars);
     await write('customers.json', customers);

@@ -36,7 +36,7 @@ Coverage:
 - Entre na pasta src.
 - Execute `npm run test`
 
-## Story: Alugar um carro
+## 📖 Story: Alugar um carro
 
 #### Caso de Uso 01
 
