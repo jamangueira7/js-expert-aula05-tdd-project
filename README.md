@@ -1,6 +1,7 @@
 <p align="center">
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
   <a href="#-como-rodar">Como rodar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-story">Storyr</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;
   </p>
 <br>
@@ -21,23 +22,75 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 Esse projeto é para treinar testes TDD.
 
 Testes: 
-<p align="center">
-  <img alt="game" src=".github/test.PNG" width="100%">
-</p>
+![test.PNG](.github%2Ftest.PNG)
 
 
 Coverage:
-<p align="center">
-  <img alt="game" src=".github/cov.PNG" width="100%">
-</p>
+![cov.PNG](.github%2Fcov.PNG)
 
 ## 🚀 Como Rodar
 
 - Clone o projeto.
 - Entre na raiz do projeto.
-- Execute "npm install".
+- Execute `npm install`.
 - Entre na pasta src.
-- Execute 'npm run test'
+- Execute `npm run test`
+
+## Story: Alugar um carro
+
+#### Caso de Uso 01
+
+Como usuário do sistema
+
+Para obter um carro disponível em uma categoria específica
+
+Dada uma categoria de carro contendo 3 carros diferentes
+
+Quando verifico se há um carro disponível
+
+Então ele deve escolher aleatoriamente um carro da categoria escolhida
+
+#### Caso de Uso 02
+
+Como usuário do sistema
+
+Para calcular o preço final do aluguel
+
+Dado um cliente que deseja alugar um carro por 5 dias
+
+E ele tem 50 anos
+
+Quando ele escolhe uma categoria de carro que custa US$ 37,6 por dia
+
+Então devo adicionar o imposto de sua idade que é de 30% ao preço da categoria do carro
+
+Então a fórmula final será `((preço por dia * Imposto) * número de dias)`
+
+E o resultado final será `((37.6 * 1.3) * 5)= 244.4`
+
+E o preço final será impresso em português do Brasil como "R$ 244,40"
+
+#### Caso de Uso 03
+
+Como usuário do sistema
+
+Para registrar uma transação de aluguel
+
+Dado um cliente registrado com 50 anos
+
+E um modelo de carro que custa US$ 37,6 por dia
+
+E uma data de entrega que é de 05 dias atrás
+
+E dada uma data real 11/05/2020
+
+Quando alugo um carro devo ver os dados do cliente
+
+E o carro selecionado
+
+E o preço final que será de R$ 244,40
+
+E DueDate que será impresso no formato português do Brasil "10 de novembro de 2020"
 
 ## 🤔 Como contribuir
 
@@ -47,4 +100,8 @@ Coverage:
 - Faça push para a sua branch: `git push origin minha-feature`.
 
 Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
+
+## 📝 Licença
+
+Esse projeto está sob a licença MIT.
 
