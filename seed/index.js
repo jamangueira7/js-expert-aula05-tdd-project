@@ -17,6 +17,13 @@ const carCategory = new CarCategory({
     price: faker.finance.amount(20, 100)
 });
 
+const carCategory2 = new CarCategory({
+    id: faker.random.uuid(),
+    name: faker.vehicle.type(),
+    carIds: [],
+    price: faker.finance.amount(20, 100)
+});
+
 const cars = [];
 const customers = [];
 
@@ -41,12 +48,24 @@ for (let index=0; index <= ITEMS_AMOUNT; index++) {
     customers.push(customer);
 }
 
+const car2 = new Car({
+    id: faker.random.uuid(),
+    name: faker.vehicle.model(),
+    available: true,
+    gasAvailable: true,
+    releaseYear: faker.date.past().getFullYear(),
+});
+
+cars.push(car2);
+
+carCategory2.carIds.push(car2.id);
+
 const write = (filename, data) => writeFile(join(seederBaseFoder, filename), JSON.stringify(data));
 
 ;(async () => {
     await write('cars.json', cars);
     await write('customers.json', customers);
-    await write('carCategories.json', [carCategory]);
+    await write('carCategories.json', [carCategory, carCategory2]);
 
     console.log('##################');
     console.log('Creating  fakers');

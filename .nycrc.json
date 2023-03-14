@@ -6,7 +6,10 @@
   "checkCoverage": true,
   "reporter": [
     "html",
-    "text"
+    "text",
+    "json"
   ],
-  "exclude": ["src/repository/base/*.js"]
+  "exclude": [
+    "src/repository/base/*.js"
+  ]
 }

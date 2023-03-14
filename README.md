@@ -21,12 +21,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Esse projeto é para treinar testes TDD.
 
-Testes: 
-![test.PNG](.github%2Ftest.PNG)
-
+Testes:
+![img.png](.github%2Fimg.png)
 
 Coverage:
-![cov.PNG](.github%2Fcov.PNG)
+![img_1.png](.github%2Fimg_1.png)
+![img_2.png](.github%2Fimg_2.png)
 
 ## 🚀 Como Rodar
 

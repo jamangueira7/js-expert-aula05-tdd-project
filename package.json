@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npx mocha -w ./test/**/*.test.js",
-    "test:cov": "npx nyc mocha --no-parallel --exit --check-leaks ./test/**/*.test.js",
+    "dev": "node src/api.js",
+    "test": "npx mocha --diff --timeout 5000 --exit ./test/**/*.test.js",
+    "test:cov": "npx nyc mocha ./test/**/*.test.js",
     "seed": "node ./seed"
   },
   "keywords": [],
@@ -20,5 +21,8 @@
     "mocha": "^8.4.0",
     "nyc": "^15.1.0",
     "sinon": "^9.2.4"
+  },
+  "dependencies": {
+    "supertest": "^6.3.3"
   }
 }

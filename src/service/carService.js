@@ -13,7 +13,25 @@ class CarService {
     }
 
     async getAvailableCar(carCategory) {
-        const cardId = this.chooseRandomCar(carCategory);
+
+        let avaliableCar = [];
+
+        await carCategory.carIds.map(async (id) => {
+            const car = await this.carRepository.find(id)
+
+            if(car.available) {
+                avaliableCar.push(car.id);
+            }
+        })
+
+
+        if(avaliableCar.length === 0) {
+            return false;
+        }
+
+        carCategory.carIds = avaliableCar;
+
+        const cardId = await this.chooseRandomCar(carCategory);
 
         const car = await this.carRepository.find(cardId);
 
@@ -21,6 +39,7 @@ class CarService {
     }
 
     chooseRandomCar(carCategory) {
+
         const randomCarIndex = this.getRandomPositionFromArray(carCategory.carIds);
         const carId = carCategory.carIds[randomCarIndex];
 
@@ -28,8 +47,9 @@ class CarService {
     }
 
     getRandomPositionFromArray(list) {
-
         const listLength = list.length;
+
+
         return Math.floor(
           Math.random() * (listLength)
         );
@@ -49,7 +69,7 @@ class CarService {
 
     async rent( customer, carCategory, numberOfDay) {
         const car = await this.getAvailableCar(carCategory);
-        const finalPrice = await this.calculateFinalPrice(customer, carCategory, numberOfDay);
+        const finalPrice = this.calculateFinalPrice(customer, carCategory, numberOfDay);
 
         const today = new Date();
         today.setDate(today.getDate() + numberOfDay);
