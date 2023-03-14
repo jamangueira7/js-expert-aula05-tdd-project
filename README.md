@@ -74,10 +74,10 @@ Retorna:
 Envia:
 ```
 {
-    carId: "5ecafd11-792f-4580-8878-0856ff5749c2",
-    custumerId: "d465398a-b458-43b1-aae9-a5a795d5a997",
-    dateInit: new Date(),
-    dateFinish: today,
+  carId: '5ecafd11-792f-4580-8878-0856ff5749c2',
+  custumerId: 'd465398a-b458-43b1-aae9-a5a795d5a997',
+  dateInit: '2023-03-14T23:22:24.193Z',
+  dateFinish: '2023-03-16T23:22:24.193Z'
 }
 ```
 
