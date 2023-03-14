@@ -83,6 +83,7 @@ describe('API Suite test', () => {
                 "dueDate": today.toLocaleDateString('pt-br', options)
             };
 
+            console.log(response.text)
             assert.deepStrictEqual(JSON.parse(response.text), expect);
         });
 

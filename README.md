@@ -1,6 +1,7 @@
 <p align="center">
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
   <a href="#-como-rodar">Como rodar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#-rotas">Rotas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-story">Storyr</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;
   </p>
@@ -35,6 +36,70 @@ Coverage:
 - Execute `npm install`.
 - Entre na pasta src.
 - Execute `npm run test`
+
+## ↗ Rotas
+
+- **`GET /`**: Rota default
+
+Retorna:
+```
+{
+    msg: 'Hello World!'
+}
+```
+
+- **`GET /car/?categoryId`**: Rota para pegar um carro disponivel randomicamente
+  
+
+Envia:
+```
+{
+    categoryId: "f5d825ca-d075-4b58-80f1-face110b586b"
+}
+```
+
+Retorna:
+```
+{
+    "id": "5ecafd11-792f-4580-8878-0856ff5749c2",
+    "name":"Countach",
+    "releaseYear":2022,
+    "available":true,
+    "gasAvailable":true
+}
+```
+
+- **`POST /rent`**: Rota para cadastrar todos
+
+Envia:
+```
+{
+    carId: "5ecafd11-792f-4580-8878-0856ff5749c2",
+    custumerId: "d465398a-b458-43b1-aae9-a5a795d5a997",
+    dateInit: new Date(),
+    dateFinish: today,
+}
+```
+
+Retorna:
+```
+{
+   "customer":{
+      "id":"d465398a-b458-43b1-aae9-a5a795d5a997",
+      "name":"Andrew Wilkinson",
+      "age":34
+   },
+   "car":{
+      "id":"5ecafd11-792f-4580-8878-0856ff5749c2",
+      "name":"Countach",
+      "releaseYear":2022,
+      "available":true,
+      "gasAvailable":true
+   },
+   "amount":"R$ 133,38",
+   "dueDate":"16 de março de 2023"
+}
+```
 
 ## 📖 Story: Alugar um carro
 
