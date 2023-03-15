@@ -69,7 +69,7 @@ Retorna:
 }
 ```
 
-- **`POST /rent`**: Rota para cadastrar todos
+- **`POST /rent`**: Rota para gerar o aluguel
 
 Envia:
 ```
@@ -98,6 +98,75 @@ Retorna:
    },
    "amount":"R$ 133,38",
    "dueDate":"16 de março de 2023"
+}
+```
+
+- **`GET /customers`**: Rota para retornar todos os clientes
+
+Retorna:
+```
+[
+    {
+        "id":"1c006be8-f900-48e5-845d-6db43edc15be",
+        "name":"Lillian Grant",
+        "age":35
+    },
+    {
+        "id":"4f59be7b-29c2-48a4-8671-113cdf6edc6d",
+        "name":"Jorge Ratke",
+        "age":24
+    },
+    {
+        "id":"d465398a-b458-43b1-aae9-a5a795d5a997",
+        "name":"Andrew Wilkinson",
+        "age":34
+    }
+]
+```
+
+- **`GET /customers?customerId`**: Rota para retornar um cliente especifico por ID
+
+Retorna:
+```
+{
+    "id":"4f59be7b-29c2-48a4-8671-113cdf6edc6d",
+    "name":"Jorge Ratke",
+    "age":24
+}
+```
+
+- **`GET /cars`**: Rota para retornar todos os carros
+
+Retorna:
+```
+[
+    {
+        id: '25b1d2f7-776b-4bb1-a26c-532fc15f75b5',
+        name: 'A8',
+        releaseYear: 2023,
+        available: true,
+        gasAvailable: true
+    },
+    {
+        id: 'c059c78b-5523-415e-afa7-2f4ebb2dd585',
+        name: 'Grand Cherokee',
+        releaseYear: 2022,
+        available: true,
+        gasAvailable: true
+    }
+]
+```
+
+- **`GET /car?cardId`**: Rota para retornar um carro especifico por ID
+
+Retorna:
+```
+{
+    "id": "5ecafd11-792f-4580-8878-0856ff5749c2",
+    "name":"Countach",
+    "releaseYear":2022,
+    "available":true,
+    "gasAvailable":true
 }
 ```
 

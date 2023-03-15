@@ -35,6 +35,48 @@ const routes = {
         return response.end();
     },
 
+    '/cars:get': async (request, response) => {
+
+        response.write(JSON.stringify(await carsDatabase.currentFileConent()));
+        return response.end();
+    },
+
+    '/car?cardId:get': async (request, response) => {
+        const { id } = request;
+
+        const car = await carsDatabase.find(id);
+
+        if(!car) {
+            response.writeHead(400, DEFAULT_HEADER);
+            response.write(JSON.stringify({ error: "car not found" }));
+            return response.end();
+        }
+
+        response.write(JSON.stringify(car));
+        return response.end();
+    },
+
+    '/customers:get': async (request, response) => {
+
+        response.write(JSON.stringify(await custumerCategories.currentFileConent()));
+        return response.end();
+    },
+
+    '/customer?customerId:get': async (request, response) => {
+        const { id } = request;
+
+        const customer = await custumerCategories.find(id);
+
+        if(!customer) {
+            response.writeHead(400, DEFAULT_HEADER);
+            response.write(JSON.stringify({ error: "customer not found" }));
+            return response.end();
+        }
+
+        response.write(JSON.stringify(customer));
+        return response.end();
+    },
+
     '/rent:post': async (request, response) => {
         let dataValue = {}
         for await (const data of request) {

@@ -27,7 +27,7 @@ describe('API Suite test', () => {
         });
     });
 
-    describe('/car/?categoryId', () => {
+    describe('/car', () => {
         it('request a random available car by category', async () => {
 
             const response = await request(app)
@@ -42,6 +42,140 @@ describe('API Suite test', () => {
                     "available":true,
                     "gasAvailable":true
                 };
+
+            assert.deepStrictEqual(JSON.parse(response.text), expect);
+        });
+
+        it('request a specific car by ID', async () => {
+
+            const response = await request(app)
+                .get(`/car`)
+                .query({ cardId: "5ecafd11-792f-4580-8878-0856ff5749c2" })
+                .expect(200);
+
+            const expect = {
+                "id": "5ecafd11-792f-4580-8878-0856ff5749c2",
+                "name":"Countach",
+                "releaseYear":2022,
+                "available":true,
+                "gasAvailable":true
+            };
+
+            assert.deepStrictEqual(JSON.parse(response.text), expect);
+        });
+
+        it('request a specific car by ID error', async () => {
+
+            const response = await request(app)
+                .get(`/car`)
+                .query({ cardId: "5ecafd11ff-792f-4580-8878-0856ff5749c2" })
+                .expect(400);
+
+            const expect = { error: "car not found" };
+
+            assert.deepStrictEqual(JSON.parse(response.text), expect);
+        });
+
+        it('request all cars', async () => {
+
+            const response = await request(app)
+                .get(`/cars`)
+                .expect(200);
+
+            const expect = [
+                {
+                    id: '25b1d2f7-776b-4bb1-a26c-532fc15f75b5',
+                    name: 'A8',
+                    releaseYear: 2023,
+                    available: true,
+                    gasAvailable: true
+                },
+                {
+                    id: 'c059c78b-5523-415e-afa7-2f4ebb2dd585',
+                    name: 'Grand Cherokee',
+                    releaseYear: 2022,
+                    available: true,
+                    gasAvailable: true
+                },
+                {
+                    id: '2fe91e45-740d-41ad-8e48-3b27d2bda38c',
+                    name: 'Silverado',
+                    releaseYear: 2022,
+                    available: false,
+                    gasAvailable: true
+                },
+                {
+                    id: '5ecafd11-792f-4580-8878-0856ff5749c2',
+                    name: 'Countach',
+                    releaseYear: 2022,
+                    available: true,
+                    gasAvailable: true
+                },
+                {
+                    id: '5ecafd11-792f-4580-8845-0856ff5749c2',
+                    name: 'Fiat',
+                    releaseYear: 2023,
+                    available: false,
+                    gasAvailable: true
+                }
+            ];
+
+            assert.deepStrictEqual(JSON.parse(response.text), expect);
+        });
+    });
+
+    describe('/customers', () => {
+        it('request all customers', async () => {
+
+            const response = await request(app)
+                .get(`/customers`)
+                .expect(200);
+
+            const expect = [
+                {
+                    "id":"1c006be8-f900-48e5-845d-6db43edc15be",
+                    "name":"Lillian Grant",
+                    "age":35
+                },
+                {
+                    "id":"4f59be7b-29c2-48a4-8671-113cdf6edc6d",
+                    "name":"Jorge Ratke",
+                    "age":24
+                },
+                {
+                    "id":"d465398a-b458-43b1-aae9-a5a795d5a997",
+                    "name":"Andrew Wilkinson",
+                    "age":34
+                }
+            ];
+
+            assert.deepStrictEqual(JSON.parse(response.text), expect);
+        });
+
+        it('request a specific customer by ID', async () => {
+
+            const response = await request(app)
+                .get(`/customer`)
+                .query({ customerId: "4f59be7b-29c2-48a4-8671-113cdf6edc6d" })
+                .expect(200);
+
+            const expect = {
+                "id":"4f59be7b-29c2-48a4-8671-113cdf6edc6d",
+                "name":"Jorge Ratke",
+                "age":24
+            };
+
+            assert.deepStrictEqual(JSON.parse(response.text), expect);
+        });
+
+        it('request a specific customer by ID error', async () => {
+
+            const response = await request(app)
+                .get(`/customer`)
+                .query({ customerId: "4f59be7ffb-29c2-48a4-8671-113cdf6edc6d" })
+                .expect(400);
+
+            const expect = { error: "customer not found" };
 
             assert.deepStrictEqual(JSON.parse(response.text), expect);
         });
