@@ -31,7 +31,6 @@ Coverage:
 ## 🚀 Como Rodar
 
 - Clone o projeto.
-- Entre na raiz do projeto.
 - Execute `npm install`.
 - Entre na pasta src.
 - Execute `npm run test`
